@@ -16,6 +16,10 @@ import com.stripe.exception.CardException;
 import com.stripe.exception.APIException;
 //
 
+import android.webkit.WebView;
+import android.content.Intent;
+import android.net.Uri;
+
 public class debug extends Activity
 {
     /** Called when the activity is first created. */
@@ -24,6 +28,20 @@ public class debug extends Activity
     {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.main);
+    }
+
+    public void runTestWebView() {
+        WebView webview = new WebView(this);
+        setContentView(webview);
+
+        // Allow following links. I have no idea how or why this works ¯\_(ツ)_/¯
+        webview.setWebViewClient(new WebViewClient());
+
+        // Enable the javascripts
+        WebSettings webSettings = webview.getSettings();
+        webSettings.setJavaScriptEnabled(true);
+
+        webview.loadUrl("http://example.org");
     }
 
     public void runTestCharge() {
